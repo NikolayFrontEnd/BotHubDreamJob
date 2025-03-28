@@ -1,0 +1,1 @@
+export {AuthPAge} from './ui/AuthPage'

@@ -1,0 +1,497 @@
+.container {
+    color: white;
+    display: flex;
+    margin: 7px;
+    height: calc(100vh - 14px);
+    gap: 15px; 
+}
+
+.leftBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+justify-content: space-between;
+    width: 324px;
+    background-color: rgba(18, 24, 37, 1);
+    border-radius: 18px;
+}
+
+.rightBlock {
+    flex-grow: 1; 
+    min-width: 0; 
+    background-color: rgba(18, 24, 37, 1);
+    border-radius: 18px;
+}
+
+.logoBlock {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.languageBlock {
+    display: flex;
+    align-items: center; 
+    gap: 8px;
+}
+
+
+.logoBlock img,
+.languageBlock img {
+    display: block; 
+}
+
+
+.buttonBlock{
+    display: flex;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-right: 15px;
+    padding-bottom: 20px;
+border-bottom:1px solid rgba(49, 62, 98, 1);
+
+}
+.addButton{
+    cursor: pointer;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    width: 38px;
+    height: 38px;
+    background-color: rgba(28, 100, 242, 1);
+    box-shadow: 0px 1px 1px 0px rgba(255, 255, 255, 0.4) inset;
+
+}
+
+.searchButton{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    width: 38px;
+    height: 38px;
+border-radius: 8px;
+    border: 1px rgba(49, 62, 98, 1) solid;
+    box-shadow: 0px 1px 1px 0px rgba(255, 255, 255, 0.4) inset;
+
+}
+
+
+.chatSection{
+    padding: 15px;
+display: block;
+overflow-y: auto;
+}
+.chatBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin-top: 5px;
+    gap: 10px; 
+}
+
+.chatBlockRight {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+}
+
+.deleteBtn {
+  cursor: pointer;
+}
+.exitBtn{
+  cursor: pointer;
+}
+.chatBlock img {
+    display: block; 
+    width: 24px; 
+    height: 24px;
+}
+
+
+.chatName {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.profileBlock {
+ 
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 15px;
+    background: rgba(18, 24, 37, 1); 
+    border-radius: 18px; 
+    border: 1px solid rgba(49, 62, 98, 1);
+    margin: 15px;
+
+}
+
+.profileelement {
+    display: flex;
+    align-items: center; 
+    gap: 12px; 
+}
+
+
+.profileelement img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  
+}
+
+.profileelement div {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileelement div > div:first-child {
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.profileelement div > div:last-child {
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+
+  .rightBlock {
+    display: flex;
+    flex-direction: column;
+padding: 15px;
+    background: rgba(18, 24, 37, 1);
+    border-radius: 18px;
+  }
+  
+  .topBlock {
+    flex-grow: 1; 
+    overflow-y: auto; 
+    padding: 20px;
+  }
+  .botmess{
+    display: flex;
+    justify-content: center;
+align-items: center;
+}
+
+.messageContent{
+    margin-left: 10px;
+}
+
+  .userMessage, .botMessage {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .userMessage {
+    justify-content: flex-end; 
+  
+  }
+  
+  .botMessage {
+    flex-direction: column;
+    align-items: flex-start; 
+  }
+  
+  .usermesblock {
+    background: rgba(71, 133, 255, 0.5);
+ 
+    padding: 12px;
+ 
+    max-width: 70%;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-left-radius: 10px;
+}
+
+.messageText {
+    flex-grow: 1; 
+    padding-right: 35px;
+}
+
+.messageTime {
+    align-self: flex-end; 
+    margin-top: auto; 
+    font-size: 12px;
+    color: rgba(255, 255, 255, 1);
+margin-left: 90px;
+}
+
+  .typeIntellect {
+  
+    display: inline-flex;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .nameModel{
+    background: rgba(34, 43, 68, 1);
+    border-radius: 14px;
+    padding: 4px 12px;
+  }
+  /* Блок ввода внизу */
+  .lowBlock {
+    padding: 20px;
+
+    background: rgba(18, 24, 37, 1);
+    position: sticky;
+    bottom: 0;
+  }
+  
+  .inputContainer {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    border: 1px solid rgba(49, 62, 98, 1);
+border-radius: 10px;
+height: 66px;
+align-items: center;
+  }
+  
+  .messageInput {
+    flex-grow: 1;
+    background: rgba(18, 24, 37, 1);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: white;
+    outline: none;
+  }
+  
+  .sendBtn {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: rgba(28, 100, 242, 1);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  
+  .sendBtn:hover {
+    opacity: 0.9;
+  }
+  
+  /* Иконки */
+  .userAvatar, .botAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .messageAction {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    cursor: pointer;
+  }
+  .limNumber{
+    margin-right: 10px;
+      }
+    
+      .limit{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+      }
+      .limSection{
+        margin-left: 5px;
+        display: flex;
+      }
+.chooseIntellect{
+    width: 147px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+ backdrop-filter: blur(16px);
+ border: 1px solid rgba(49, 62, 98, 1);
+ border-radius: 10px;
+ justify-content: center;
+}
+.botIcon{
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.botName{
+    margin-right: 5px;
+}
+
+.botBlock{
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.dropDownBlock{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.limitBlock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.languageSwitcher{
+  cursor: pointer;
+  position: absolute;
+  top:60px;
+  left:238px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(49, 62, 98, 1);
+  border-radius: 8px;
+  backdrop-filter: blur(16px);
+  width:68px;
+  height: 100px;
+
+}
+
+.active{
+  
+margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 42px;
+background: rgba(49, 62, 98, 1);
+border-radius: 8px;
+margin-bottom: 5px;
+}
+
+.vector{
+  cursor: pointer;
+}
+
+.modelSwitcher{
+  display: flex;
+flex-direction: column;
+border-radius: 10px;
+gap:6px;
+padding: 6px;
+width:272px;
+height: 156px;
+border: 1px solid rgba(49, 62, 98, 1);
+backdrop-filter: blur(16px);
+margin-bottom: 7px;
+justify-content: space-between;
+}
+
+.chatItem{
+  cursor: pointer;
+  padding-left: 20px;
+  display: flex;
+  width: 245px;
+  height: 44px;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 5px;
+  align-items: center;
+  padding-left: 20px;
+
+}
+
+.activeBlock{
+  background: rgba(49, 62, 98, 1);;
+}
+
+.formChat {
+  position: absolute;
+  backdrop-filter: blur(16px); 
+  border-radius: 10px;
+  padding: 20px;
+  margin-left: 10px;
+  background-color: rgba(49, 62, 98, 0.8); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
+  width: 250px; 
+}
+
+.formChat input {
+
+  padding: 12px;
+  background-color: rgba(18, 24, 37, 1); 
+  color: white; 
+  border: 1px solid rgba(97, 109, 141, 0.5); 
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease; 
+}
+
+
+
+.formChat button {
+
+  padding: 12px;
+  background-color: rgba(28, 100, 242, 1); 
+  color: white; 
+  border: none;
+  border-radius: 8px; 
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+}
+
+.formChat button:hover {
+  background-color: rgba(28, 100, 242, 0.8); 
+}
+
+.formChat button:active {
+  background-color: rgba(28, 100, 242, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.mobileLeftBlock{
+  font-size: 25px;
+  font-weight: 600;
+  width: 30px;
+  display: none;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+@media (max-width: 1024px) {
+.leftBlock{
+  display: none;
+}
+
+.mobileLeftBlock{
+  display: flex;
+}
+}
+
+@media(min-width:1025px){
+.leftBlock, .rightBlock{
+  display: flex !important;
+}
+}

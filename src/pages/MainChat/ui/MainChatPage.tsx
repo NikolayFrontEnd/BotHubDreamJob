@@ -9,8 +9,6 @@ export const MainChatPage = () =>{
     rightBlockRef, 
     toggleSidebar 
   } = useToggleSidebar();
-
-
       return (
         <>
         <div className={styles.container}>

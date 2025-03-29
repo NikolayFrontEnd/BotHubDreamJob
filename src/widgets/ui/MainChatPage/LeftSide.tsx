@@ -13,16 +13,24 @@ import { checkPage } from '../../../shared/hooks/checkName';
 import { LeftSideProps } from '../../../entities/MainChatPage/model/types';
 import { useLanguageManagement } from '../../model/MainVhatPage/LeftSide/LanguageUtils';
 import { useChatChange } from '../../model/MainVhatPage/LeftSide/ChatUtils';
+import { useEffect} from 'react';
+import chatsStore from '../../../app/store/ChatsStore';
+import { observer } from 'mobx-react';
+import messagesStore from '../../../app/store/Messagesstore';
+
 
 
 export const LeftSide : React.FC<LeftSideProps>= ({toggleSidebar, leftBlockRef}) => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxNjBhOTAxLWJiMzYtNDIzZS05NGQ1LWVmMzM5YTcxMDQwNSIsImlzRGV2ZWxvcGVyIjp0cnVlLCJpYXQiOjE3NDAwNjA3NDEsImV4cCI6MjA1NTYzNjc0MX0.JYrAECA8EpzptOqtKIyq7gJWf83hburC9S25yF5Xt3k";
+
+
     const { handleLogout } = useAuth();
     const {userName} = checkPage()
 //с языками функци
 const {currentLanguage, isLanguageOpen,openPannel, changeLanguage} = useLanguageManagement();
 //удаление чата      
-const {chats, handleDeleteChat, openChat, openInput, formAction} = useChatChange(token);
+const { openChat, openInput, formAction} = useChatChange();
+
+
 
 const LanguageSwitcherBlock = () =>{
   return(
@@ -80,6 +88,7 @@ const ButtomBlock = () =>{
 }
 
 const InputBlockChat = () =>{
+ 
   return (
     <>
         {
@@ -92,26 +101,34 @@ const InputBlockChat = () =>{
   )
 }
 
-const ShowChats = () => {
+const ShowChats = observer(() => {
+
+useEffect(()=>{
+chatsStore.fetchChats();
+},[])
+const handleChatClick = (id:string) =>{
+chatsStore.selectChat(id);
+messagesStore.fetchMessage(id)
+}
   return (
     <div className={styles.chatSection}>
-      {chats.slice(0, 7).map((el) => (
-        <div key={el.id} className={styles.chatBlock}>
+      {chatsStore.chats.map((el) => (
+        <div   key={el.id} className={styles.chatBlock}>
           <div className={styles.chatBlockRight}>
             <div><img src={chat}/></div>
-            <div className={styles.chatName}>{el.name}</div>
+            <div onClick = {()=>handleChatClick(el.id)} className={styles.chatName}>{el.name}</div>
           </div>
           <div className={styles.deleteBtn}> 
             <img 
               src={trash} 
-              onClick={() => handleDeleteChat(el.id)}
+              onClick={() => chatsStore.deleteChat(el.id)}
             />
           </div>
         </div>
       ))}
     </div>
   )
-}
+})
 
 const Profile = () =>{
   return<>
@@ -127,6 +144,9 @@ const Profile = () =>{
     </div>
   </>
 }
+
+
+
     return (
         <>
         <div 
@@ -153,7 +173,8 @@ const Profile = () =>{
 
     {/* Блок профиля */}
 <Profile/>
-        </div>
+
+</div>
 
         </>
     )

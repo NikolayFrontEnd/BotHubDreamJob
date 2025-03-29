@@ -91,6 +91,7 @@ overflow-y: auto;
     align-items: center; 
     margin-top: 5px;
     gap: 10px; 
+  
 }
 
 .chatBlockRight {
@@ -116,6 +117,7 @@ overflow-y: auto;
     font-weight: 500;
     font-size: 16px;
     line-height: 22px;
+    cursor: pointer;
 }
 
 .profileBlock {
@@ -186,6 +188,7 @@ align-items: center;
 
 .messageContent{
     margin-left: 10px;
+     max-width: 500px; 
 }
 
   .userMessage, .botMessage {
@@ -207,9 +210,7 @@ align-items: center;
   
   .usermesblock {
     background: rgba(71, 133, 255, 0.5);
- 
     padding: 12px;
- 
     max-width: 70%;
     position: relative; 
     display: flex;
@@ -222,6 +223,7 @@ border-bottom-left-radius: 10px;
 .messageText {
     flex-grow: 1; 
     padding-right: 35px;
+     max-width: 500px; 
 }
 
 .messageTime {

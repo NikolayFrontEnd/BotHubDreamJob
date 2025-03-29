@@ -1,21 +1,10 @@
-import { useState } from "react";
-import { createChat, deleteChat, getChats } from "../../../../features";
-import { useChats } from "../../../../shared/hooks/fetchChats";
-import { useFormState } from "react-dom";
+import { useActionState, useState } from "react";
+import chatsStore from "../../../../app/store/ChatsStore";
 
-export const useChatChange = (token:string) => {
-
-const {chats, setChats}  = useChats(token);
-const handleDeleteChat = async (chatId: string) => {
-        try {
-          await deleteChat(chatId, token);
-          const updatedChats = await getChats.fetchChats(token);
-          setChats(updatedChats);
-        } catch (error) {
-          console.error("Chat deletion failed:", error);
-        }
+export const useChatChange = () => {
+const handleDeleteChat = async (id:string) => {
+          await chatsStore.deleteChat(id);
       }
-
 const [openInput, setOpenInput] = useState<boolean>(false);
  const openChat = () =>{
     setOpenInput(!openInput);
@@ -24,18 +13,11 @@ const [openInput, setOpenInput] = useState<boolean>(false);
 
      const action = async (_: any, formData: FormData) => {
         const chatName = formData.get("chatName") as string;
-        try {
-          const newChat = await createChat(chatName, token);
-          setChats(prevChats => [...prevChats, newChat]);
-          setOpenInput(false);
-        } catch (error) {
-          console.error("Ошибка при создании чата:", error);
-        }
+       await chatsStore.createChat(chatName);
+       setOpenInput(false);
         return chatName;
       }; 
 
-const [_, formAction] = useFormState(action, ""); 
-
-return {chats, handleDeleteChat, openChat, openInput, formAction};
-
+const [_, formAction] = useActionState(action, ""); 
+return { handleDeleteChat, openChat, openInput, formAction};
 };

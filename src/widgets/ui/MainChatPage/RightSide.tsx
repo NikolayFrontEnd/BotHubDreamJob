@@ -31,6 +31,8 @@ const InputBlock = () =>{
   }
   const[_, formAction] = useActionState(action, "");
 
+
+
   return(
     <>
         <div className={styles.lowBlock}>
@@ -71,16 +73,24 @@ const InputBlock = () =>{
     <div className={styles.dropDownBlock} onClick = {openModelPannel}>    <img src={vector} className={styles.dropdownIcon}/>  </div> 
     </div>
 
-    <form action = {formAction} className={styles.inputContainer}>
-      <input 
-        placeholder='Введите что-нибудь...' 
-        className={styles.messageInput}
-        name="message"
-      />
-      <button type = "submit" className={styles.sendBtn}>
-        <img src={send} className={styles.sendIcon}/>
-      </button>
-    </form>
+{
+  chatsStore.selectedChatId === "" ?  <div className={styles.noChatMessage}>
+  Создайте чат или выберите существующий!
+
+</div> : <form action = {formAction} className={styles.inputContainer}>
+  <input 
+    placeholder='Введите что-нибудь...' 
+    className={styles.messageInput}
+    name="message"
+  />
+  <button type = "submit" className={styles.sendBtn}>
+    <img src={send} className={styles.sendIcon}/>
+  </button>
+</form>
+
+}
+    
+
   </div>
     </>
   )
@@ -182,53 +192,37 @@ useEffect(() => {
     )
 }
 
-/* const MessageUser = () =>{
-  return(
-    <>
-          <div className={styles.userMessage}>
-        <img src={copy} className={styles.messageAction}/>
-        <div className={styles.usermesblock}>
-          <div className={styles.messageText}>Привет бот</div>
-          <div className={styles.messageTime}>09:54</div>
-        </div>
-        <img src={userPhoto} className={styles.userAvatar}/>
-      </div>
-    </>
-  )
-}
-const BotMessages = () =>{
-  return(
-    <>
-          <div className={styles.botMessage}>
-        <div className={styles.typeIntellect}>
-          <span>Chat gpt</span>
-          <span className={styles.nameModel}>gpt-3.5-turbo</span>
-        </div>
+
+
+/*  это, чтобы получить модели
+useEffect(() => {
+    const fetchModels = async (token: string) => {
+      try {
+        const response = await client.get("/model/list", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
         
-        <div className={styles.botmess}>
-          <div>       
-          <img src={currentIcon} className={styles.botAvatar}/>
-          </div>
-          <div className={styles.messageContent}>
-            Привет, чем могу помочь?
-          </div>
-        </div>
+        const gptParentModel = response.data.find((model: any) => model.id === "gpt");
+        
+        if (gptParentModel) {
+          console.log("GPT model:", gptParentModel);
+          
+          if (gptParentModel.children) {
+            console.log("All children models: ",gptParentModel.children)
+            return gptParentModel.children;
+          }
+        }
+        
+        return [];
+      } catch (error) {
+        console.error("Error fetching models:", error);
+        return [];
+      }
+    };
   
-        <div className={styles.limit}>
-          <div className={styles.limSection}>        
-          <span className={styles.limNumber}>-223 CAPS</span>
-          <div className={styles.messageAction}>    
-          <img src={copy} />
-          </div>
-          </div>
-  
-          <div className={styles.messageTime}>   
-          <span >09:54</span>
-          </div>
-        </div>
-  
-      </div>
-    </>
-  )
-}
- */
+    fetchModels("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxNjBhOTAxLWJiMzYtNDIzZS05NGQ1LWVmMzM5YTcxMDQwNSIsImlzRGV2ZWxvcGVyIjp0cnVlLCJpYXQiOjE3NDAwNjA3NDEsImV4cCI6MjA1NTYzNjc0MX0.JYrAECA8EpzptOqtKIyq7gJWf83hburC9S25yF5Xt3k");
+  }, []); */
+

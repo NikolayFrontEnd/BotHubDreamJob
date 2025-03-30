@@ -118,6 +118,9 @@ overflow-y: auto;
     font-size: 16px;
     line-height: 22px;
     cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .profileBlock {
@@ -358,6 +361,9 @@ align-items: center;
   align-items: center;
 }
 
+.chatName:hover{
+background-color: rgb(36, 44, 66);
+}
 
 
 .languageSwitcher{
@@ -496,4 +502,14 @@ justify-content: space-between;
 .leftBlock, .rightBlock{
   display: flex !important;
 }
+}
+
+.activeChat{
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: rgb(36, 44, 66);
 }

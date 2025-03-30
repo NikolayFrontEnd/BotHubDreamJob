@@ -15,56 +15,7 @@ import { observer } from 'mobx-react';
 export const RightSide: React.FC<RightSideProps> = ({rightBlockRef}) => {
 const {handleModelSelect, openModelPannel, models, currentModel, currentIcon, setCurrentIcon, isModelsBlockOpen} = useModelChoose();
    
-/* const MessageUser = () =>{
-  return(
-    <>
-          <div className={styles.userMessage}>
-        <img src={copy} className={styles.messageAction}/>
-        <div className={styles.usermesblock}>
-          <div className={styles.messageText}>Привет бот</div>
-          <div className={styles.messageTime}>09:54</div>
-        </div>
-        <img src={userPhoto} className={styles.userAvatar}/>
-      </div>
-    </>
-  )
-}
-const BotMessages = () =>{
-  return(
-    <>
-          <div className={styles.botMessage}>
-        <div className={styles.typeIntellect}>
-          <span>Chat gpt</span>
-          <span className={styles.nameModel}>gpt-3.5-turbo</span>
-        </div>
-        
-        <div className={styles.botmess}>
-          <div>       
-          <img src={currentIcon} className={styles.botAvatar}/>
-          </div>
-          <div className={styles.messageContent}>
-            Привет, чем могу помочь?
-          </div>
-        </div>
-  
-        <div className={styles.limit}>
-          <div className={styles.limSection}>        
-          <span className={styles.limNumber}>-223 CAPS</span>
-          <div className={styles.messageAction}>    
-          <img src={copy} />
-          </div>
-          </div>
-  
-          <div className={styles.messageTime}>   
-          <span >09:54</span>
-          </div>
-        </div>
-  
-      </div>
-    </>
-  )
-}
- */
+
 const InputBlock = () =>{
 
   const action = (_:any, formData:FormData) => {
@@ -136,9 +87,19 @@ const InputBlock = () =>{
 }
 
 const ChatComponent = observer(() => {
-  useEffect(() => {
-    messagesStore.fetchMessage(chatsStore.selectedChatId);
-  }, [chatsStore.selectedChatId]);
+
+useEffect(() => {
+  if (chatsStore.selectedChatId) {
+    console.log("Starting message stream for chat:", chatsStore.selectedChatId);
+    messagesStore.startMessageStream(chatsStore.selectedChatId);
+    
+    return () => {
+      console.log("Stopping message stream");
+      messagesStore.stopMessageStream();
+    };
+  }
+}, [chatsStore.selectedChatId]);
+
 
 
   const formatTime = (dateString:any) => {
@@ -210,10 +171,6 @@ const ChatComponent = observer(() => {
        <>
     <div  ref={rightBlockRef}  className={styles.rightBlock}>
     <div className={styles.topBlock}>
-{/*     <BotMessages/>
-
-    <MessageUser/> */}
-
     <ChatComponent/>
     </div>
   {/* Нижний блок UI */}
@@ -225,3 +182,53 @@ const ChatComponent = observer(() => {
     )
 }
 
+/* const MessageUser = () =>{
+  return(
+    <>
+          <div className={styles.userMessage}>
+        <img src={copy} className={styles.messageAction}/>
+        <div className={styles.usermesblock}>
+          <div className={styles.messageText}>Привет бот</div>
+          <div className={styles.messageTime}>09:54</div>
+        </div>
+        <img src={userPhoto} className={styles.userAvatar}/>
+      </div>
+    </>
+  )
+}
+const BotMessages = () =>{
+  return(
+    <>
+          <div className={styles.botMessage}>
+        <div className={styles.typeIntellect}>
+          <span>Chat gpt</span>
+          <span className={styles.nameModel}>gpt-3.5-turbo</span>
+        </div>
+        
+        <div className={styles.botmess}>
+          <div>       
+          <img src={currentIcon} className={styles.botAvatar}/>
+          </div>
+          <div className={styles.messageContent}>
+            Привет, чем могу помочь?
+          </div>
+        </div>
+  
+        <div className={styles.limit}>
+          <div className={styles.limSection}>        
+          <span className={styles.limNumber}>-223 CAPS</span>
+          <div className={styles.messageAction}>    
+          <img src={copy} />
+          </div>
+          </div>
+  
+          <div className={styles.messageTime}>   
+          <span >09:54</span>
+          </div>
+        </div>
+  
+      </div>
+    </>
+  )
+}
+ */

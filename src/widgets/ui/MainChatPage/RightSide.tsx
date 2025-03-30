@@ -73,8 +73,7 @@ const InputBlock = () =>{
     <div className={styles.dropDownBlock} onClick = {openModelPannel}>    <img src={vector} className={styles.dropdownIcon}/>  </div> 
     </div>
 
-{
-  chatsStore.selectedChatId === "" ?  <div className={styles.noChatMessage}>
+{/* { chatsStore.selectedChatId === "" ?  <div className={styles.noChatMessage}>
   Создайте чат или выберите существующий!
 
 </div> : <form action = {formAction} className={styles.inputContainer}>
@@ -88,8 +87,18 @@ const InputBlock = () =>{
   </button>
 </form>
 
-}
-    
+} */}
+
+<form action = {formAction} className={styles.inputContainer}>
+  <input 
+    placeholder='Введите что-нибудь...' 
+    className={styles.messageInput}
+    name="message"
+  />
+  <button type = "submit" className={styles.sendBtn}>
+    <img src={send} className={styles.sendIcon}/>
+  </button>
+</form>
 
   </div>
     </>

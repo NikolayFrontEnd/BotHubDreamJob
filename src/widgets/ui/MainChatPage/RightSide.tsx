@@ -120,7 +120,7 @@ useEffect(() => {
 
   return (
     <>
-
+    
       {reversedMessages.map((message) => {
 
         if (message.role === "user") {
@@ -171,6 +171,7 @@ useEffect(() => {
         }
         return null;
       })}
+
     </>
   );
 });

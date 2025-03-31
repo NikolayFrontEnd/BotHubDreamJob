@@ -221,6 +221,10 @@ align-items: center;
 border-top-left-radius: 10px;
 border-top-right-radius: 10px;
 border-bottom-left-radius: 10px;
+
+word-wrap: break-word;
+overflow-wrap: break-word;
+word-break: break-word;
 }
 
 .messageText {
@@ -365,7 +369,7 @@ align-items: center;
 background-color: rgb(36, 44, 66);
 }
 
-
+.messageText
 .languageSwitcher{
   cursor: pointer;
   position: absolute;
@@ -550,4 +554,19 @@ justify-content: space-between;
   100% {
     box-shadow: 0 0 0 0 rgba(42, 82, 152, 0);
   }
+}
+@media(max-width:520px){
+   .modelSwitcher{
+  width: 220px;
+      }
+      .chatItem{
+        width:193px
+      }
+      .sendBtn{
+        width: 25px;
+        height: 25px;
+      }
+    }
+::-webkit-scrollbar {
+  display: none;
 }

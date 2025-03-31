@@ -13,10 +13,9 @@ import { checkPage } from '../../../shared/hooks/checkName';
 import { LeftSideProps } from '../../../entities/MainChatPage/model/types';
 import { useLanguageManagement } from '../../model/MainVhatPage/LeftSide/LanguageUtils';
 import { useChatChange } from '../../model/MainVhatPage/LeftSide/ChatUtils';
-import { useEffect} from 'react';
 import chatsStore from '../../../app/store/ChatsStore';
 import { observer } from 'mobx-react';
-import messagesStore from '../../../app/store/Messagesstore';
+import { useFetchChats, useHandleChatClick } from '../../../features/MainChatPage/useChats';
 
 
 
@@ -103,15 +102,8 @@ const InputBlockChat = () =>{
 
 const ShowChats = observer(() => {
 
-useEffect(()=>{
-chatsStore.fetchChats();
-},[])
-const handleChatClick = (id:string) =>{
-chatsStore.selectChat(id);
-messagesStore.fetchMessage(id)
-}
-
-
+  useFetchChats();
+  const handleChatClick = useHandleChatClick();
 
   return (
     <div className={styles.chatSection}>

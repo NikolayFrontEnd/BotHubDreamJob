@@ -6,10 +6,10 @@ import copy from "../../../shared/assets/copy.png"
 import userPhoto from '../../../shared/assets/userPhoto.png'
 import { useModelChoose } from '../../model/MainVhatPage/RightSide/ModelChoose';
 import { RightSideProps } from '../../../entities/MainChatPage/model/types';
-import { useActionState, useEffect } from 'react';
-import messagesStore from '../../../app/store/Messagesstore';
 import chatsStore from '../../../app/store/ChatsStore';
 import { observer } from 'mobx-react';
+import { useMessageSending } from '../../../features/MainChatPage/useMessageSending';
+import { useChatMessages } from '../../../features/MainChatPage/useChatRealTimeMessages';
 
 
 export const RightSide: React.FC<RightSideProps> = ({rightBlockRef}) => {
@@ -18,19 +18,7 @@ const {handleModelSelect, openModelPannel, models, currentModel, currentIcon, se
 
 const InputBlock = observer(() =>{
 
-  const action = (_:any, formData:FormData) => {
-    const mess = formData.get("message");
-    console.log(mess);
-    
-
-    if (mess) {
-      messagesStore.sendMessage(chatsStore.selectedChatId, mess.toString());
-    }
-    
-    return mess;
-  }
-  const[_, formAction] = useActionState(action, "");
-
+  const formAction = useMessageSending();
 
 
   return(
@@ -96,32 +84,12 @@ const InputBlock = observer(() =>{
 
 const ChatComponent = observer(() => {
 
-useEffect(() => {
-  if (chatsStore.selectedChatId) {
-    console.log("Starting message stream for chat:", chatsStore.selectedChatId);
-    messagesStore.startMessageStream(chatsStore.selectedChatId);
-    
-    return () => {
-      console.log("Stopping message stream");
-      messagesStore.stopMessageStream();
-    };
-  }
-}, [chatsStore.selectedChatId]);
-
-
-
-  const formatTime = (dateString:any) => {
-    const date = new Date(dateString);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  };
-
-
-  const reversedMessages = [...messagesStore.messages].reverse();
+  const { messages, formatTime } = useChatMessages();
 
   return (
     <>
     
-      {reversedMessages.map((message) => {
+      {messages.map((message) => {
 
         if (message.role === "user") {
           return (
@@ -190,38 +158,3 @@ useEffect(() => {
        </> 
     )
 }
-
-
-
-/*  это, чтобы получить модели
-useEffect(() => {
-    const fetchModels = async (token: string) => {
-      try {
-        const response = await client.get("/model/list", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-        
-        const gptParentModel = response.data.find((model: any) => model.id === "gpt");
-        
-        if (gptParentModel) {
-          console.log("GPT model:", gptParentModel);
-          
-          if (gptParentModel.children) {
-            console.log("All children models: ",gptParentModel.children)
-            return gptParentModel.children;
-          }
-        }
-        
-        return [];
-      } catch (error) {
-        console.error("Error fetching models:", error);
-        return [];
-      }
-    };
-  
-    fetchModels("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIxNjBhOTAxLWJiMzYtNDIzZS05NGQ1LWVmMzM5YTcxMDQwNSIsImlzRGV2ZWxvcGVyIjp0cnVlLCJpYXQiOjE3NDAwNjA3NDEsImV4cCI6MjA1NTYzNjc0MX0.JYrAECA8EpzptOqtKIyq7gJWf83hburC9S25yF5Xt3k");
-  }, []); */
-
